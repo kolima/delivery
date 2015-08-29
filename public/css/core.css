@@ -25,6 +25,11 @@ body {
 	min-height: 520px;
 }
 
+img {
+	height: 100%;
+	width: 100%;
+}
+
 .bigicon {
 	font-size: 35px;
 	color: #36A0FF;
