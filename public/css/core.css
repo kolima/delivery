@@ -1,0 +1,27 @@
+a:hover, .cursor-pointer {
+	cursor: pointer;
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+	overflow-y: scroll;
+}
+
+body {
+	-webkit-print-color-adjust: exact;
+	padding-top: 60px;
+	margin-bottom: 70px;
+	min-height: 100%;
+}
+
+.header {
+	color: #36A0FF;
+	font-size: 27px;
+	padding: 10px;
+}
+
+.bigicon {
+	font-size: 35px;
+	color: #36A0FF;
+}
