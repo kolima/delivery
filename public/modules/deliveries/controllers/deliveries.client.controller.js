@@ -2,37 +2,41 @@
 
 class DeliveriesController {
     // @ngInject
-    constructor($window) {
+    constructor($window, DeliveriesService) {
         this.$window = $window;
+        this.deliveriesService = DeliveriesService;
         this.init();
 
 
     }
 
     init() {
-        if (this.$window.mapIsLoaded) {
-            this.initGoogleMap();
-        } else {
-            this.$window.initMap = this.initGoogleMap.bind(this);
-        }
+        this.deliveriesService.findFirst().then((result) => {
+            if (this.$window.mapIsLoaded) {
+                this.initGoogleMap(result.data);
+            } else {
+                this.$window.initMap = this.initGoogleMap.bind(this, result.data);
+            }
+        });
+
     }
 
-    initGoogleMap() {
+    initGoogleMap(data) {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
-            center: {lat: 37.77, lng: -122.447}
+            center: {lat: data.location.coordinates[0], lng: data.location.coordinates[1]}
         });
         directionsDisplay.setMap(map);
 
         this.$window.mapIsLoaded = true;
-        this.calculateAndDisplayRoute(directionsService, directionsDisplay);
+        this.calculateAndDisplayRoute(directionsService, directionsDisplay, data);
     }
 
-    calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    calculateAndDisplayRoute(directionsService, directionsDisplay, data) {
         directionsService.route({
-            origin: {lat: 37.77, lng: -122.447},
+            origin: {lat: data.location.coordinates[0], lng: data.location.coordinates[1]},
             destination: {lat: 37.768, lng: -122.511},
 
             travelMode: google.maps.TravelMode.DRIVING

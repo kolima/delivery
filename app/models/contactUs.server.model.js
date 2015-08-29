@@ -9,19 +9,23 @@ module.exports = function (sequelize, DataTypes) {
 		},
 
 		firstName: {
-			type: DataTypes.STRING(45)
+			type: DataTypes.STRING(45),
+			allowNull: false
 		},
 
 		lastName: {
-			type: DataTypes.STRING(45)
+			type: DataTypes.STRING(45),
+			allowNull: false
 		},
 
 		email: {
-			type: DataTypes.STRING(45)
+			type: DataTypes.STRING(45),
+			allowNull: false
 		},
 
 		text: {
-			type: DataTypes.STRING(1000)
+			type: DataTypes.STRING(1000),
+			allowNull: false
 		}
 	}, {
 		freezeTableName: true

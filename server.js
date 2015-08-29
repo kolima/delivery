@@ -4,6 +4,7 @@
  */
 var init = require('./config/init')(),
     config = require('./config/config'),
+    bootstrap = require('./config/bootstrap'),
     Sequelize = require('sequelize'),
     chalk = require('chalk');
 
@@ -14,10 +15,13 @@ db.authenticate()
     .then(function () {
         return db.sync();
     })
+    .then(function () {
+        return bootstrap();
+    })
     .catch(function (err) {
-    console.error(chalk.red('Sequelize connection error: ' + err));
-    process.exit(-1);
-});
+        console.error(chalk.red('Sequelize connection error: ' + err));
+        process.exit(-1);
+    });
 
 var models = require('./config/sequelize').setModels(db);
 

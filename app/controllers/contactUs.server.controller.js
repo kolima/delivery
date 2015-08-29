@@ -4,8 +4,7 @@
  * Module dependencies.
  */
 
-var models = require('../../config/sequelize'),
-    config = require('../../config/config');
+var models = require('../../config/sequelize');
 
 exports.create = function (req, res, next) {
     models.contactUs.create(req.body)
