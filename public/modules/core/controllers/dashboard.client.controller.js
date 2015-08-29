@@ -2,8 +2,15 @@
 
 class DashboardController {
 	// @ngInject
-	constructor() {
+	constructor(ContactUsService) {
+		this.contactUsService = ContactUsService;
+		this.init();
+	}
 
+	init() {
+		this.contactUsService.count().then((result) => {
+			this.contactUs = result.data;
+		});
 	}
 }
 

@@ -10,7 +10,11 @@ var init = require('./config/init')(),
 // Bootstrap db connection
 var db = new Sequelize(config.db.uri, config.db.options);
 
-db.authenticate().catch(function (err) {
+db.authenticate()
+    .then(function () {
+        return db.sync();
+    })
+    .catch(function (err) {
     console.error(chalk.red('Sequelize connection error: ' + err));
     process.exit(-1);
 });

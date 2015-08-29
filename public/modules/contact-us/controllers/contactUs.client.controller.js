@@ -2,8 +2,17 @@
 
 class ContactUsController {
 	// @ngInject
-	constructor() {
+	constructor(ContactUsService, $location) {
+		this.contactUsService = ContactUsService;
+		this.$location = $location;
+		this.contactUs = {};
+	}
 
+
+	sendContactUs() {
+		this.contactUsService.create(this.contactUs).then(() => {
+			this.$location.path('/');
+		});
 	}
 }
 
