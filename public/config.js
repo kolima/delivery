@@ -25,3 +25,9 @@ window.ApplicationConfiguration = (function() {
 	};
 })();
 
+//Loader google map
+window.mapIsLoaded = false;
+window.initMap = function () {
+	window.mapIsLoaded = true;
+};
+

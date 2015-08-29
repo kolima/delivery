@@ -21,6 +21,10 @@ body {
 	padding: 10px;
 }
 
+.deliveries.well {
+	min-height: 520px;
+}
+
 .bigicon {
 	font-size: 35px;
 	color: #36A0FF;
@@ -28,4 +32,29 @@ body {
 
 textarea {
 	resize: vertical;
+}
+
+#map {
+	height: 400px;
+}
+
+#panel {
+	position: absolute;
+	top: 10px;
+	left: 25%;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+	text-align: center;
+}
+
+#panel, .panel {
+	font-family: 'Roboto','sans-serif';
+	line-height: 30px;
+	padding-left: 10px;
+}
+
+#panel i, .panel i {
+	font-size: 12px;
 }
