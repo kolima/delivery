@@ -7,7 +7,8 @@ window.ApplicationConfiguration = (function() {
 	var applicationModuleVendorDependencies = [
 		'ngAnimate',
 		'ui.router',
-		'LocalStorageModule'
+		'LocalStorageModule',
+		'angular-jwt'
 	];
 
 	// Add a new vertical module

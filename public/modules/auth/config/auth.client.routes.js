@@ -19,13 +19,19 @@ class AuthRoutes {
 				url: '/register',
 				controller: 'AuthRegisterController',
 				controllerAs: 'vm',
-				templateUrl: '/modules/auth/views/auth.register.client.view.html'
+				templateUrl: '/modules/auth/views/auth.register.client.view.html',
+				data: {
+					shouldUnauthorized: true
+				}
 			})
 			.state('login', {
 				url: '/login',
 				controller: 'AuthLoginController',
 				controllerAs: 'vm',
-				templateUrl: '/modules/auth/views/auth.login.client.view.html'
+				templateUrl: '/modules/auth/views/auth.login.client.view.html',
+				data: {
+					shouldUnauthorized: true
+				}
 			})
 			.state('logout', {
 				url: '/logout',

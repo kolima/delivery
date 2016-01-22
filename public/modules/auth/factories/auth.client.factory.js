@@ -5,34 +5,39 @@
 'use strict';
 
 class AuthFactory {
-	constructor() {
+	constructor(localStorageService) {
+		this.localStorage = localStorageService;
 		this.isAuthenticated = false;
 		this.userInformation = {};
 	}
 
+	setTokenInLocalStorage(token) {
+		return this.localStorage.set("authToken", token);
+	}
+
+	getTokenFromLocalStorage() {
+		return this.localStorage.get('authToken');
+	}
+
 	userIsAuthenticated() {
-		console.log("userIsAuthenticated");
 		this.isAuthenticated = true;
 	}
 
 	userIsUnauthorized() {
-		console.log("userIsUnauthorized");
 		this.isAuthenticated = false;
 	}
 
 	setUserInformation(data) {
 		this.userInformation = data;
-		console.log("setUserInformation  : ", this.userInformation);
 	}
 
 	clearUserInfromation() {
 		this.userInformation = {};
-		console.log("setUserInformation  : ", this.userInformation);
 	}
 
 	// @ngInject
-	static factory() {
-		return new AuthFactory();
+	static factory(localStorageService) {
+		return new AuthFactory(localStorageService);
 	}
 }
 

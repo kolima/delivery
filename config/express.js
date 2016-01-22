@@ -35,7 +35,6 @@ module.exports = function (models) {
 	app.use('/api/v1/', function (req, res, next) {
 		if (req.headers.authorization) {
 			let token = req.headers.authorization.split(' ');
-			console.log(token);
 			jwt.verify(token[1], config.config.secret, function (err, decoded) {
 				console.log(err);
 				if (err)

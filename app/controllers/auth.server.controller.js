@@ -13,14 +13,11 @@ function createToken(user) {
 }
 
 exports.register = function (req, res, next) {
-	let token = createToken(req.body.email);
 	models.users.create(req.body)
 		.then((response) => {
-			let returnObject = {
-				user: response.dataValues,
-				token: token
-			};
-			return res.status(200).send(returnObject);
+			delete response.dataValues.password;
+			response.dataValues.token = createToken(response.dataValues);
+			return res.status(200).send(response.dataValues);
 		})
 		.catch((err) => {
 			console.log(err.message);
@@ -36,12 +33,9 @@ exports.login = function (req, res, next) {
 	}).then((person) => {
 		if (person) {
 			if (person.dataValues.password === req.body.password) {
-				let token = createToken(person.dataValues.email);
-				let returnObject = {
-					user: person.dataValues,
-					token: token
-				};
-				return res.status(200).send(returnObject);
+				delete person.dataValues.password;
+				person.dataValues.token = createToken(person.dataValues);
+				return res.status(200).send(person.dataValues);
 			} else {
 				let returnObject = {
 					message: 'Password is not correct'
@@ -54,7 +48,6 @@ exports.login = function (req, res, next) {
 			};
 			return res.status(401).send(returnObject);
 		}
-
 	}).catch((err) => {
 		console.log(err.message);
 		next(err.message);

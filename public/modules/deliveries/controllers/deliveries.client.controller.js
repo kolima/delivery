@@ -2,16 +2,16 @@
 
 class DeliveriesController {
 	// @ngInject
-	constructor($window, $location, DeliveriesService, AuthService) {
+	constructor($window, $location, DeliveriesService, AuthFactory) {
 		this.$window = $window;
 		this.$location = $location;
 		this.deliveriesService = DeliveriesService;
-		this.authService = AuthService;
+		this.authFactory = AuthFactory;
 		this.init();
 	}
 
 	init() {
-		let token = this.authService.getTokenFromLocalStorage();
+		let token = this.authFactory.getTokenFromLocalStorage();
 		if (token) {
 			this.deliveriesService.findFirst(token).then((result) => {
 				if (this.$window.mapIsLoaded) {

@@ -19,10 +19,6 @@ class AuthService {
 		return this.$http.post('/api/auth/login', data);
 	}
 
-	getTokenFromLocalStorage() {
-		return this.localStorage.get('authToken');
-	}
-
 	// @ngInject
 	static factory($http, localStorageService) {
 		return new AuthService($http, localStorageService);
