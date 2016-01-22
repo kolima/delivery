@@ -15,7 +15,9 @@ var express = require('express'),
 	_ = require('lodash'),
 	consolidate = require('consolidate'),
 	cookieParser = require('cookie-parser'),
-	path = require('path');
+	path = require('path'),
+	jwt = require('jsonwebtoken');
+
 
 module.exports = function (models) {
 	// Initialize express app
@@ -29,6 +31,26 @@ module.exports = function (models) {
 	app.locals.jsFiles = config.getJavaScriptAssets();
 	app.locals.cssFiles = config.getCSSAssets();
 	app.locals.compiler = config.compiler;
+
+	app.use('/api/v1/', function (req, res, next) {
+		if (req.headers.authorization) {
+			let token = req.headers.authorization.split(' ');
+			console.log(token);
+			jwt.verify(token[1], config.config.secret, function (err, decoded) {
+				console.log(err);
+				if (err)
+					return res.status(400).send({message: 'Some problem!'});
+				if (!decoded)
+					return res.status(401).send({message: 'You a not authorize!'});
+				else
+					next();
+			});
+		} else {
+			return res.status(401).send({message: 'You a not authorize!'});
+		}
+
+	});
+
 
 	// Passing the request url to environment locals
 	app.use(function (req, res, next) {

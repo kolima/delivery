@@ -6,7 +6,8 @@ window.ApplicationConfiguration = (function() {
 	var applicationModuleName = 'delivery';
 	var applicationModuleVendorDependencies = [
 		'ngAnimate',
-		'ui.router'
+		'ui.router',
+		'LocalStorageModule'
 	];
 
 	// Add a new vertical module
@@ -30,4 +31,3 @@ window.mapIsLoaded = false;
 window.initMap = function () {
 	window.mapIsLoaded = true;
 };
-

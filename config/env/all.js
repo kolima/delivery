@@ -26,7 +26,8 @@ module.exports = {
 			js: [
 				'public/lib/angular/angular.js',
 				'public/lib/angular-animate/angular-animate.js',
-				'public/lib/angular-ui-router/release/angular-ui-router.js'
+				'public/lib/angular-ui-router/release/angular-ui-router.js',
+				'public/lib/angular-local-storage/dist/angular-local-storage.js'
 			]
 		},
 		css: [

@@ -2,8 +2,9 @@
 
 class HeaderController {
 	// @ngInject
-	constructor() {
-
+	constructor($scope, AuthFactory) {
+		this.authFactory = AuthFactory;
+		this.$scope = $scope;
 	}
 }
 

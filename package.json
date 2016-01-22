@@ -37,11 +37,12 @@
     "gulp-sourcemaps": "~1.5.2",
     "gulp-uglify": "~1.0.1",
     "helmet": "~0.5.0",
+    "jsonwebtoken": "^5.5.4",
     "lodash": "~3.9.3",
     "method-override": "~2.3.0",
     "morgan": "~1.4.1",
-    "mysql": "^2.7.0",
     "node-uuid": "~1.4.3",
+    "pg": "^4.4.3",
     "run-sequence": "~1.0.1",
     "sequelize": "^3.6.0",
     "swig": "~1.4.1"

@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
         },
 
         location: {
-            type: DataTypes.GEOMETRY,
+            type: DataTypes.GEOMETRY('Point'),
             allowNull: false
         }
     }, {

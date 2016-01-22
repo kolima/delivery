@@ -1,0 +1,27 @@
+<form name="registerForm">
+	<div class="form-group">
+		<label for="inputLogin">Login</label>
+		<input type="text" class="form-control"
+			   id="inputLogin" placeholder="Login" name="login"
+			   ng-model="vm.registerUser.login" maxlength="25" required>
+	</div>
+	<div class="form-group">
+		<label for="inputPassword">Password</label>
+		<input type="password" class="form-control"
+			   id="inputPassword" placeholder="Password"
+			   ng-model="vm.registerUser.password" maxlength="18" required>
+	</div>
+	<div class="form-group">
+		<label for="inputEmail">Email</label>
+		<input type="email" class="form-control"
+			   id="inputEmail" placeholder="Email"
+			   ng-model="vm.registerUser.email" maxlength="40" required>
+	</div>
+	<div class="form-group">
+		<label for="inputName">Full Name</label>
+		<input type="text" class="form-control"
+			   id="inputName" placeholder="Name"
+			   ng-model="vm.registerUser.username" maxlength="50" required>
+	</div>
+	<button class="btn btn-default" ng-click="vm.sendRegisterData()">Register</button>
+</form>
