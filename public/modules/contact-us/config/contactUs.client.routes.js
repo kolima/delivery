@@ -8,7 +8,7 @@ class ContactUsRoutes {
 
 	init() {
 		this.$stateProvider
-			.state('contactUs', {
+			.state('sidebar.contactUs', {
 				url: '/contact-us',
 				controller: 'ContactUsController',
 				controllerAs: 'vm',
@@ -22,4 +22,4 @@ class ContactUsRoutes {
 	}
 }
 
-angular.module('contactUs').config(ContactUsRoutes.factory);
+angular.module('core').config(ContactUsRoutes.factory);

@@ -11,15 +11,12 @@ class DashboardController {
 
 	init() {
 		let token = this.authFactory.getTokenFromLocalStorage();
-		if (token) {
-			this.contactUsService.count(token).then((result) => {
-				this.contactUs = result.data;
-			}, (err) => {
-				this.$location.path('/login');
-			});
-		} else {
+		this.contactUsService.count(token).then((result) => {
+			this.contactUs = result.data;
+		}, (err) => {
 			this.$location.path('/login');
-		}
+		});
+
 	};
 }
 

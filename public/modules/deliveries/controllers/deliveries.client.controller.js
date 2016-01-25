@@ -12,7 +12,6 @@ class DeliveriesController {
 
 	init() {
 		let token = this.authFactory.getTokenFromLocalStorage();
-		if (token) {
 			this.deliveriesService.findFirst(token).then((result) => {
 				if (this.$window.mapIsLoaded) {
 					this.initGoogleMap(result.data)	;
@@ -22,11 +21,7 @@ class DeliveriesController {
 
 			}, (error) => {
 				console.log(error);
-				this.$location.path('/login');
 			});
-		} else {
-			this.$location.path('/login');
-		}
 	};
 
 	initGoogleMap(data) {

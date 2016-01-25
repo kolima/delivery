@@ -7,8 +7,9 @@
 class AuthFactory {
 	constructor(localStorageService) {
 		this.localStorage = localStorageService;
-		this.isAuthenticated = false;
+		this.isAuthenticated = this.getTokenFromLocalStorage() ? true : false;
 		this.userInformation = {};
+
 	}
 
 	setTokenInLocalStorage(token) {

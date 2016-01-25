@@ -20,8 +20,12 @@ exports.register = function (req, res, next) {
 			return res.status(200).send(response.dataValues);
 		})
 		.catch((err) => {
-			console.log(err.message);
-			next(err.message);
+			switch (err.message) {
+				case 'Validation error':
+					return res.status(409).send(err.errors[0].message);
+				default :
+					return res.status(400).send(err.errors[0].message);
+			}
 		});
 };
 

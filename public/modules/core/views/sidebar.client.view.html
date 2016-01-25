@@ -1,14 +1,23 @@
-<ul class="nav nav-pills nav-stacked" ng-controller="SidebarController as vm">
-	<li ng-class="{ active: vm.$state.is('dashboard') }">
-		<a href="/#/"><i class="fa fa-home"></i> Dashboard</a>
-	</li>
-	<li ng-class="{ active: vm.$state.is('deliveries') }">
-		<a href="/#/deliveries"><i class="fa fa-suitcase"></i> Deliveries</a>
-	</li>
-	<li ng-class="{ active: vm.$state.is('prices') }">
-		<a href="/#/prices"><i class="fa fa-usd"></i> Prices</a>
-	</li>
-	<li ng-class="{ active: vm.$state.is('contactUs') }">
-		<a href="/#/contact-us"><i class="fa fa-paper-plane-o"></i> Contact Us</a>
-	</li>
-</ul>
+<div class="row">
+	<div id="sidebar" class="col-xs-3">
+		<ul class="nav nav-pills nav-stacked" ng-controller="SidebarController as vm">
+			<li ng-class="{ active: vm.$state.is('dashboard') }">
+				<a href="/#/"><i class="fa fa-home"></i> Dashboard</a>
+			</li>
+			<li ng-class="{ active: vm.$state.is('deliveries') }">
+				<a href="/#/deliveries"><i class="fa fa-suitcase"></i> Deliveries</a>
+			</li>
+			<li ng-class="{ active: vm.$state.is('prices') }">
+				<a href="/#/prices"><i class="fa fa-usd"></i> Prices</a>
+			</li>
+			<li ng-class="{ active: vm.$state.is('contactUs') }">
+				<a href="/#/contact-us"><i class="fa fa-paper-plane-o"></i> Contact Us</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-xs-9">
+		<div ui-view></div>
+	</div>
+</div>
+
+

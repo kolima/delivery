@@ -2,14 +2,20 @@
  * Created by britishd on 22.01.16.
  */
 
-angular.module('core').run(['$rootScope', '$location', 'AuthFactory',
-	function ($rootScope, $location, AuthFactory) {
+//@ngInject
+angular.module('core').run(
+	function ($rootScope, $state, $location, AuthFactory) {
 		let authFactory = AuthFactory;
-		console.log(authFactory)
-		$rootScope.$on('$stateChangeStart', function (e, to) {
-			if (to.data && to.data.shouldUnauthorized && authFactory.isAuthenticated) {
+		let whiteList = ['login', 'register'];
+		$rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+			console.log(toState);
+			console.log(authFactory.isAuthenticated);
+			if (whiteList.indexOf(toState.name) == -1 && !authFactory.isAuthenticated) {
 				e.preventDefault();
-				$location.path('/');
+				$state.go('login');
 			}
-		})
-	}]);
+			if (whiteList.indexOf(toState.name) != -1 && authFactory.isAuthenticated) {
+				e.preventDefault();
+			}
+		});
+	});

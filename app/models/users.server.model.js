@@ -12,7 +12,8 @@ module.exports = function (sequelize, DataTypes) {
 		},
 		login: {
 			type: DataTypes.STRING(25),
-			allowNull: false
+			allowNull: false,
+			unique: true
 		},
 		password: {
 			type: DataTypes.STRING(18),
@@ -24,7 +25,8 @@ module.exports = function (sequelize, DataTypes) {
 		},
 		email: {
 			type: DataTypes.STRING(40),
-			allowNull: false
+			allowNull: false,
+			unique: true
 		}
 	},{
 		freezeTableName: true
