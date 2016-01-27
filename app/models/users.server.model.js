@@ -16,7 +16,11 @@ module.exports = function (sequelize, DataTypes) {
 			unique: true
 		},
 		password: {
-			type: DataTypes.STRING(18),
+			type: DataTypes.STRING(1500),
+			allowNull: false
+		},
+		salt : {
+			type: DataTypes.STRING(1500),
 			allowNull: false
 		},
 		username: {
@@ -27,6 +31,16 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.STRING(40),
 			allowNull: false,
 			unique: true
+		},
+		facebook_id : {
+			type: DataTypes.STRING
+		},
+		facebook_access_token : {
+			type: DataTypes.STRING(1500)
+		},
+		reset_token : {
+			type: DataTypes.STRING(1500),
+			allowNull: false
 		}
 	},{
 		freezeTableName: true

@@ -8,7 +8,8 @@ window.ApplicationConfiguration = (function() {
 		'ngAnimate',
 		'ui.router',
 		'LocalStorageModule',
-		'angular-jwt'
+		'angular-jwt',
+		'ngCookies'
 	];
 
 	// Add a new vertical module

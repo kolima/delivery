@@ -12,4 +12,13 @@ module.exports = function (app) {
 
 	app.route('/api/auth/login')
 		.post(auth.login);
+
+	app.route('/auth/facebook')
+		.get(auth.facebookLogin);
+
+	app.route('/api/auth/facebook/callback')
+		.get(auth.facebookCallback);
+
+	app.route('/api/auth/reset')
+		.put(auth.reset);
 };

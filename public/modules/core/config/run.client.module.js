@@ -4,18 +4,37 @@
 
 //@ngInject
 angular.module('core').run(
-	function ($rootScope, $state, $location, AuthFactory) {
+	function ($rootScope, $state, $location, $cookies, AuthFactory) {
 		let authFactory = AuthFactory;
 		let whiteList = ['login', 'register'];
 		$rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
-			console.log(toState);
-			console.log(authFactory.isAuthenticated);
-			if (whiteList.indexOf(toState.name) == -1 && !authFactory.isAuthenticated) {
+			let cookieToken = $cookies.get('token');
+			if (!cookieToken) {
+				if (whiteList.indexOf(toState.name) == -1 && !authFactory.isAuthenticated) {
+					e.preventDefault();
+					$location.path('/login');
+				}
+				if (whiteList.indexOf(toState.name) != -1 && authFactory.isAuthenticated) {
+					e.preventDefault();
+				}
+			} else {
+				authFactory.setTokenInLocalStorage(cookieToken);
+				$cookies.remove('token');
 				e.preventDefault();
-				$state.go('login');
+				$state.go('sidebar.dashboard');
 			}
-			if (whiteList.indexOf(toState.name) != -1 && authFactory.isAuthenticated) {
-				e.preventDefault();
+		});
+		$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+			if (to.name === 'login') {
+				if ($location.$$search.token) {
+					var tomorrow = new Date();
+					tomorrow.setDate(tomorrow.getDate() + 1);
+					console.log(tomorrow);
+					$cookies.put('reset', $location.$$search.token, {
+						expires: tomorrow
+					})
+					$location.url($location.path());
+				}
 			}
 		});
 	});

@@ -109,7 +109,6 @@ module.exports = function (models) {
 	// Setting the app router and static folder
 	app.use(express.static(path.resolve('./public')));
 
-
 	// connect flash for flash messages
 	app.use(flash());
 

@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="text-center">
+		<h2>Enter a new password </h2>
+	</div>
+	<form name="resetForm">
+		<div class="form-group">
+			<label for="inputPassword">Password</label>
+			<input type="password" class="form-control"
+				   id="inputPassword" placeholder="Password"
+				   ng-model="vm.reset.password" maxlength="18" required>
+		</div>
+		<div class="form-group">
+			<label for="inputPasswordRepeat">Repeat password</label>
+			<input type="password" class="form-control"
+				   id="inputPasswordRepeat" placeholder="Repeat password"
+				   ng-model="vm.reset.passwordRepeat" maxlength="18" required>
+		</div>
+		<button class="btn btn-default" ng-click="vm.resetPassword()">Reset</button>
+	</form>
+</div>
+

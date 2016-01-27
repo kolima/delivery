@@ -28,7 +28,8 @@ module.exports = {
 				'public/lib/angular-animate/angular-animate.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-local-storage/dist/angular-local-storage.js',
-				'public/lib/angular-jwt/dist/angular-jwt.js'
+				'public/lib/angular-jwt/dist/angular-jwt.js',
+				'public/lib/angular-cookies/angular-cookies.js'
 			]
 		},
 		css: [

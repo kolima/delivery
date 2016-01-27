@@ -12,6 +12,7 @@ class DeliveriesController {
 
 	init() {
 		let token = this.authFactory.getTokenFromLocalStorage();
+		console.log(token);
 			this.deliveriesService.findFirst(token).then((result) => {
 				if (this.$window.mapIsLoaded) {
 					this.initGoogleMap(result.data)	;

@@ -1,15 +1,27 @@
-<form name="loginForm">
-	<div class="form-group">
-		<label for="inputLogin">Login</label>
-		<input type="text" class="form-control"
-			   id="inputLogin" placeholder="Email" name="login"
-			   ng-model="vm.loginUser.login" maxlength="25" required>
+<div class="row">
+	<div class=" text-center">
+		<h2>Enter with</h2>
+		<a href="auth/facebook"><img src="./images/facebook.png" width="300" height="65" alt=""></a>
 	</div>
-	<div class="form-group">
-		<label for="inputPassword">Password</label>
-		<input type="password" class="form-control"
-			   id="inputPassword" placeholder="Password"
-			   ng-model="vm.loginUser.password" maxlength="18" required>
+</div>
+<div class="row">
+	<div class="text-center">
+		<h2>Or login as usually</h2>
 	</div>
-	<button class="btn btn-default" ng-click="vm.sendLoginData()">Login</button>
-</form>
+	<form name="loginForm">
+		<div class="form-group">
+			<label for="inputLogin">Login</label>
+			<input type="text" class="form-control"
+				   id="inputLogin" placeholder="Email" name="login"
+				   ng-model="vm.loginUser.login" maxlength="25" required>
+		</div>
+		<div class="form-group">
+			<label for="inputPassword">Password</label>
+			<input type="password" class="form-control"
+				   id="inputPassword" placeholder="Password"
+				   ng-model="vm.loginUser.password" maxlength="18" required>
+		</div>
+		<button class="btn btn-default" ng-click="vm.sendLoginData()">Login</button>
+	</form>
+</div>
+

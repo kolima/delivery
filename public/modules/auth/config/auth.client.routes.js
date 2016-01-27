@@ -36,7 +36,14 @@ class AuthRoutes {
 			.state('logout', {
 				url: '/logout',
 				controller: 'AuthLogoutController'
-			});
+			})
+			.state('sidebar.reset', {
+				url: '/reset',
+				controller: 'AuthResetController',
+				controllerAs : 'vm',
+				templateUrl: '/modules/auth/views/auth.reset.client.view.html',
+
+			})
 	};
 
 	static factory($stateProvider, localStorageServiceProvider) {

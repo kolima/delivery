@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	glob = require('glob');
+	glob = require('glob'),
+	nodemailer = require('nodemailer');
 
 /**
  * Load app configurations
@@ -15,8 +16,19 @@ module.exports = _.extend(
 );
 
 module.exports.config = {
-	secret : 'thisissecretkeyforjwt'
+	secret : 'thisissecretkeyforjwt',
+	appId : '180484802312797',
+	appSecret : '4ab3941afe264f96655c4c01db306dd8',
+	passwordSecret : 'ThisIsSecretForHashUsersPasswords'
 };
+
+module.exports.transporter = nodemailer.createTransport({
+	service : 'Gmail',
+	auth: {
+		user: 'compomatic.dev@gmail.com',
+		pass: '1qaZXsw2',
+	}
+});
 
 /**
  * Get files by glob patterns
