@@ -19,6 +19,10 @@ class AuthService {
 		return this.$http.post('/api/auth/login', data);
 	}
 
+	reset(data) {
+		return this.$http.put('/api/auth/reset', data);
+	}
+
 	// @ngInject
 	static factory($http, localStorageService) {
 		return new AuthService($http, localStorageService);

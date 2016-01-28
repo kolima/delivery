@@ -13,7 +13,14 @@ class AuthResetController {
 	};
 
 	resetPassword() {
-		console.log("reset");
+		this.reset.email = this.authFactory.userInformation.email;
+		this.authService.reset(this.reset).then((response) => {
+			let message = response.data.message;
+			this.localStorage.clearAll();
+			this.authFactory.userIsUnauthorized();
+			this.authFactory.clearUserInfromation();
+			this.$location.path('/login');
+		})
 	}
 }
 

@@ -67,7 +67,12 @@ function facebookInsert(user, token) {
 				.spread((user, created) => {
 					let result = user.get({plain: true});
 					if (created) {
-						resetPasswordMail({email: result.email, password: timePassword, name: result.username, reset_token : facebookUser.reset_token });
+						resetPasswordMail({
+							email: result.email,
+							password: timePassword,
+							name: result.username,
+							reset_token: facebookUser.reset_token
+						});
 					}
 					let userToken = tokens.createToken({
 						login: result.login,
@@ -86,7 +91,6 @@ function facebookInsert(user, token) {
 
 exports.register = function (req, res, next) {
 	createHashAndSaltPassword(req.body.password).then((data) => {
-		console.log(data);
 		req.body.password = data.hash;
 		req.body.salt = data.salt;
 		req.body.reset_token = Math.random().toString(36).slice(2);
@@ -191,6 +195,47 @@ exports.facebookCallback = function (request, response, next) {
 	});
 };
 
-exports.reset = function () {
-	console.log("hello");
+exports.reset = function (request, response, next) {
+	models.users.findOne({
+		where: {
+			reset_token: request.body.reset_token
+		}
+	}).then((person) => {
+		if (person) {
+			if (request.body.password === request.body.passwordRepeat) {
+				encodePasswordToHashWithSalt(request.body.password, person.dataValues.salt).then((data) => {
+					models.users.update({
+						password: data.hash
+					}, {
+						where: {
+							reset_token: request.body.reset_token
+						}
+					}).then((callback) => {
+						if (callback) {
+							let returnObject = {
+								message: 'You successful change password!'
+							};
+							return response.status(200).send(returnObject);
+						} else {
+							let returnObject = {
+								message: 'Sorry, can not change you password!'
+							};
+							return response.status(401).send(returnObject);
+						}
+
+					});
+				});
+			} else {
+				let returnObject = {
+					message: 'Password not same!!!'
+				};
+				return response.status(401).send(returnObject);
+			}
+		} else {
+			let returnObject = {
+				message: 'Wrong login or email!'
+			};
+			return response.status(401).send(returnObject);
+		}
+	});
 };

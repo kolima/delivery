@@ -37,7 +37,7 @@ class AuthRoutes {
 				url: '/logout',
 				controller: 'AuthLogoutController'
 			})
-			.state('sidebar.reset', {
+			.state('reset', {
 				url: '/reset',
 				controller: 'AuthResetController',
 				controllerAs : 'vm',
