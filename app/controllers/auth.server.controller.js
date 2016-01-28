@@ -9,45 +9,11 @@ var tokens = require('../../config/tokens');
 var OAuth = require('oauth').OAuth2;
 var FB = require('fb');
 var resetPasswordMail = require('../../config/mailer').resetPasswordMail;
-var crypto = require('crypto');
+var createHashAndSaltPassword = require('../../config/passwords').createHashAndSaltPassword;
+var encodePasswordToHashWithSalt = require('../../config/passwords').encodePasswordToHashWithSalt;
 
 let oa = new OAuth(config.appId, config.appSecret, '', 'https://www.facebook.com/dialog/oauth', 'https://graph.facebook.com/v2.3/oauth/access_token', null);
 
-
-function createHashAndSaltPassword(password) {
-	let promise = new Promise((resolve, reject) => {
-		crypto.randomBytes(128, function (err, salt) {
-			if (err) {
-				reject(err);
-			}
-			salt = salt.toString('hex');
-			crypto.pbkdf2(password, salt, 1000, 64, 'sha512', (err, hash) => {
-				if (err) {
-					reject(err);
-				}
-				resolve({
-					salt: salt,
-					hash: hash.toString('hex')
-				});
-			});
-		});
-	});
-	return promise;
-}
-
-function encodePasswordToHashWithSalt(password, salt) {
-	let promise = new Promise((resolve, reject) => {
-		crypto.pbkdf2(password, salt, 1000, 64, 'sha512', (err, hash) => {
-			if (err) {
-				reject(err);
-			}
-			resolve({
-				hash: hash.toString('hex')
-			});
-		});
-	});
-	return promise;
-}
 
 function facebookInsert(user, token) {
 	let promise = new Promise(function (resolve, reject) {
@@ -77,7 +43,8 @@ function facebookInsert(user, token) {
 					let userToken = tokens.createToken({
 						login: result.login,
 						username: result.username,
-						email: result.email
+						email: result.email,
+						reset_token: result.reset_token
 					});
 					resolve(userToken);
 				}).catch((err) => {
@@ -96,12 +63,11 @@ exports.register = function (req, res, next) {
 		req.body.reset_token = Math.random().toString(36).slice(2);
 		models.users.create(req.body)
 			.then((response) => {
-
-
 				let dataToSent = {
 					login: response.dataValues.login,
 					username: response.dataValues.username,
-					email: response.dataValues.email
+					email: response.dataValues.email,
+					reset_token : response.dataValues.reset_token
 				};
 				response.dataValues.token = tokens.createToken(dataToSent);
 				dataToSent.token = response.dataValues.token;
@@ -131,7 +97,8 @@ exports.login = function (req, res, next) {
 					let dataToSent = {
 						login: person.dataValues.login,
 						username: person.dataValues.username,
-						email: person.dataValues.email
+						email: person.dataValues.email,
+						reset_token : person.dataValues.reset_token
 					};
 					person.dataValues.token = tokens.createToken(dataToSent);
 					dataToSent.token = person.dataValues.token;
@@ -191,51 +158,6 @@ exports.facebookCallback = function (request, response, next) {
 					}
 				});
 			});
-		}
-	});
-};
-
-exports.reset = function (request, response, next) {
-	models.users.findOne({
-		where: {
-			reset_token: request.body.reset_token
-		}
-	}).then((person) => {
-		if (person) {
-			if (request.body.password === request.body.passwordRepeat) {
-				encodePasswordToHashWithSalt(request.body.password, person.dataValues.salt).then((data) => {
-					models.users.update({
-						password: data.hash
-					}, {
-						where: {
-							reset_token: request.body.reset_token
-						}
-					}).then((callback) => {
-						if (callback) {
-							let returnObject = {
-								message: 'You successful change password!'
-							};
-							return response.status(200).send(returnObject);
-						} else {
-							let returnObject = {
-								message: 'Sorry, can not change you password!'
-							};
-							return response.status(401).send(returnObject);
-						}
-
-					});
-				});
-			} else {
-				let returnObject = {
-					message: 'Password not same!!!'
-				};
-				return response.status(401).send(returnObject);
-			}
-		} else {
-			let returnObject = {
-				message: 'Wrong login or email!'
-			};
-			return response.status(401).send(returnObject);
 		}
 	});
 };
