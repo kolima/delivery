@@ -13,7 +13,7 @@ module.exports.resetPasswordMail = function (data) {
 		from: 'delivery admin <brenor01@gmail.com>', // sender address
 		to: data.email, // list of receivers
 		subject: 'Welcome in Delivery', // Subject line
-		html : '<h2>Dear ' + data.name + '</h2><br><span>Write now your password is ' + data.password + '</span><p>If you wanna change it, please follow by link:</p><br><span>' + link +'</span>'
+		html : '<h2>Dear ' + data.name + '</h2><br><span>Write now your password is ' + data.password + '</span><p>If you wanna change it, please enter in you profile at your account!</span>'
 	};
 	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {

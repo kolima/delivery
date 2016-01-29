@@ -4,13 +4,14 @@
 'use strict';
 
 class AuthRoutes {
-	constructor($stateProvider, localStorageServiceProvider) {
+	constructor($stateProvider, $locationProvider, localStorageServiceProvider) {
 		this.$stateProvider = $stateProvider;
 		localStorageServiceProvider
 			.setPrefix('auth')
 			.setNotify(true, true);
 		this.init();
-
+		this.$$locationProvider = $locationProvider
+		this.$$locationProvider.html5Mode(true);
 	};
 
 	init() {
@@ -39,8 +40,8 @@ class AuthRoutes {
 			})
 	};
 
-	static factory($stateProvider, localStorageServiceProvider) {
-		return new AuthRoutes($stateProvider, localStorageServiceProvider);
+	static factory($stateProvider, $locationProvider, localStorageServiceProvider) {
+		return new AuthRoutes($stateProvider, $locationProvider, localStorageServiceProvider);
 	};
 }
 ;
