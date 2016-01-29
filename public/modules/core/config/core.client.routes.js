@@ -1,12 +1,14 @@
 'use strict';
 
 class CoreRoutes {
-	constructor($urlRouterProvider, $stateProvider, $locationProvider) {
+	constructor($urlRouterProvider, $stateProvider, $translateProvider) {
 		this.$urlRouterProvider = $urlRouterProvider;
 		this.$stateProvider = $stateProvider;
+		this.$translateProvider = $translateProvider
 		this.init();
-		this.$$locationProvider = $locationProvider
-		this.$$locationProvider.html5Mode(true);
+		this.$translateProvider.useCookieStorage();
+		this.$translateProvider.useUrlLoader('/api/i18n/lang')
+		this.$translateProvider.preferredLanguage('en');
 	}
 
 	init() {
@@ -25,8 +27,8 @@ class CoreRoutes {
 	}
 
 	// @ngInject
-	static factory($urlRouterProvider, $stateProvider, $locationProvider) {
-		return new CoreRoutes($urlRouterProvider, $stateProvider, $locationProvider);
+	static factory($urlRouterProvider, $stateProvider, $translateProvider) {
+		return new CoreRoutes($urlRouterProvider, $stateProvider, $translateProvider);
 	}
 }
 

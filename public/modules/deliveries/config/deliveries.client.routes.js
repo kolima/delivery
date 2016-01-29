@@ -1,11 +1,9 @@
 'use strict';
 
 class DeliveriesRoutes {
-    constructor($stateProvider, $locationProvider) {
+    constructor($stateProvider) {
         this.$stateProvider = $stateProvider;
         this.init();
-		this.$$locationProvider = $locationProvider
-		this.$$locationProvider.html5Mode(true);
     }
 
     init() {
@@ -19,8 +17,8 @@ class DeliveriesRoutes {
     }
 
     // @ngInject
-    static factory($stateProvider, $locationProvider){
-        return new DeliveriesRoutes($stateProvider, $locationProvider);
+    static factory($stateProvider){
+        return new DeliveriesRoutes($stateProvider);
     }
 }
 

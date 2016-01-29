@@ -4,7 +4,7 @@
 
 //@ngInject
 angular.module('core').run(
-	function ($rootScope, $state, $location, $cookies, AuthFactory) {
+	function ($rootScope, $state, $location, $cookies, AuthFactory, $translate) {
 		let authFactory = AuthFactory;
 		let whiteList = ['login', 'register'];
 		$rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
@@ -24,18 +24,7 @@ angular.module('core').run(
 				$state.go('sidebar.dashboard');
 			}
 		});
-		//$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-		//	console.log("window success : ", window.history);
-		//	if (to.name === 'login') {
-		//		if ($location.$$search.token) {
-		//			var tomorrow = new Date();
-		//			tomorrow.setDate(tomorrow.getDate() + 1);
-		//			console.log(tomorrow);
-		//			$cookies.put('reset', $location.$$search.token, {
-		//				expires: tomorrow
-		//			})
-		//			$location.url($location.path());
-		//		}
-		//	}
+		//$rootScope.$on('$translatePartialLoaderStructureChanged', function () {
+		//	$translate.refresh();
 		//});
 	});

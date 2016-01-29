@@ -9,7 +9,8 @@ window.ApplicationConfiguration = (function() {
 		'ui.router',
 		'LocalStorageModule',
 		'angular-jwt',
-		'ngCookies'
+		'ngCookies',
+		'pascalprecht.translate'
 	];
 
 	// Add a new vertical module

@@ -35,7 +35,8 @@ module.exports = {
 				'public/lib/angular-translate/angular-translate.js',
 				'public/lib/angular-translate-loader-url/angular-translate-loader-url.js',
 				'public/lib/angular-translate-loader-partial/angular-translate-loader-partial.js',
-				'public/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
+				'public/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+				'public/lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js'
 
 			]
 		},
@@ -48,6 +49,7 @@ module.exports = {
 			'public/config.js',
 			'public/application.js',
 			'public/modules/*/*.js',
+			'public/modules/*/*.json',
 			'public/modules/*/*[!tests]*/*.js'
 		],
 		js: 'public/dist/application.min.js',

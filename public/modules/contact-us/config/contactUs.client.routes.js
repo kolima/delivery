@@ -1,11 +1,9 @@
 'use strict';
 
 class ContactUsRoutes {
-	constructor($stateProvider, $locationProvider) {
+	constructor($stateProvider) {
 		this.$stateProvider = $stateProvider;
 		this.init();
-		this.$$locationProvider = $locationProvider
-		this.$$locationProvider.html5Mode(true);
 	}
 
 	init() {
@@ -19,8 +17,8 @@ class ContactUsRoutes {
 	}
 
 	// @ngInject
-	static factory($stateProvider, $locationProvider){
-		return new ContactUsRoutes($stateProvider, $locationProvider);
+	static factory($stateProvider){
+		return new ContactUsRoutes($stateProvider);
 	}
 }
 

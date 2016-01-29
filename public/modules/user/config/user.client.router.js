@@ -5,12 +5,11 @@
 'use strict';
 
 class UserRoutes {
-	constructor($urlRouterProvider, $stateProvider, $locationProvider) {
+	constructor($urlRouterProvider, $stateProvider) {
 		this.$urlRouterProvider = $urlRouterProvider;
 		this.$stateProvider = $stateProvider;
 		this.init();
-		this.$$locationProvider = $locationProvider
-		this.$$locationProvider.html5Mode(true);
+
 	}
 
 	init() {
@@ -26,8 +25,8 @@ class UserRoutes {
 	}
 
 	// @ngInject
-	static factory($urlRouterProvider, $stateProvider, $locationProvider) {
-		return new UserRoutes($urlRouterProvider, $stateProvider, $locationProvider);
+	static factory($urlRouterProvider, $stateProvider) {
+		return new UserRoutes($urlRouterProvider, $stateProvider);
 	}
 }
 

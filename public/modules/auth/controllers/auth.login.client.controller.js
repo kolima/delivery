@@ -5,10 +5,14 @@
 
 class AuthLoginController {
 	//@ngInject
-	constructor($location,  AuthService, AuthFactory) {
+	constructor($location, AuthService, AuthFactory, $translatePartialLoader, $translate) {
 		this.$location = $location;
 		this.authService = AuthService;
 		this.authFactory = AuthFactory;
+		this.$translatePartialLoader = $translatePartialLoader;
+		this.$translate = $translate;
+
+		// custom value
 		this.loginUser = {};
 	};
 
