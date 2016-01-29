@@ -1,29 +1,84 @@
 <div class="well well-sm">
-    <legend class="text-center header" translate="PRICES_TITLE">Prices</legend>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Type</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Computer</td>
-            <td>10$</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>TV</td>
-            <td>15$</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Refrigerator</td>
-            <td>20$</td>
-        </tr>
-        </tbody>
-    </table>
+	<legend class="text-center header" translate="PRICES_TITLE">Prices</legend>
+	<div class="row text-center" ng-if="!vm.allStaff.length">
+		<h3 ng-bind="vm.message"></h3>
+	</div>
+	<table class="table" ng-if="vm.allStaff.length > 0">
+		<thead>
+		<tr>
+			<th>#</th>
+			<th>Type</th>
+			<th>Price</th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in vm.allStaff track by $index">
+				<th ng-bind="$index"></th>
+				<td>
+					<span ng-bind="item.type" ng-if="!item.isEdit"></span>
+					<input type="text" ng-model="item.type" ng-if="item.isEdit">
+				</td>
+				<td>
+					<span ng-bind="item.price" ng-if="!item.isEdit"></span>
+					<input type="text" ng-model="item.price" ng-if="item.isEdit">
+				</td>
+				<td>
+					<button type="button" class="btn btn-sm btn-primary" ng-click="vm.edit($index)" ng-if="!item.isEdit">
+						<span class="glyphicon glyphicon-edit" ></span>
+					</button>
+					<button type="button" class="btn btn-sm btn-success" ng-click="vm.add($index)" ng-if="item.isEdit">
+						<span class="glyphicon glyphicon-plus" ></span>
+					</button>
+					<button type="button" class="btn btn-sm btn-danger">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row text-center">
+		<button class="btn bg-success" ng-click="vm.addStaff()"><span class="glyphicon glyphicon-plus"></span>Add</button>
+	</div>
 </div>
+
+
+<!--  old   -->
+<!--<tr>-->
+<!--<th scope="row">1</th>-->
+<!--<td>Computer</td>-->
+<!--<td>10$</td>-->
+<!--<td>-->
+<!--<button type="button" class="btn btn-sm btn-primary">-->
+<!--<span class="glyphicon glyphicon-edit"></span>-->
+<!--</button>-->
+<!--<button type="button" class="btn btn-sm btn-danger">-->
+<!--<span class="glyphicon glyphicon-trash"></span>-->
+<!--</button>-->
+<!--</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<th scope="row">2</th>-->
+<!--<td>TV</td>-->
+<!--<td>15$</td>-->
+<!--<td>-->
+<!--<button type="button" class="btn btn-sm btn-primary">-->
+<!--<span class="glyphicon glyphicon-edit"></span>-->
+<!--</button>-->
+<!--<button type="button" class="btn btn-sm btn-danger">-->
+<!--<span class="glyphicon glyphicon-trash"></span>-->
+<!--</button>-->
+<!--</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<th scope="row">3</th>-->
+<!--<td>Refrigerator</td>-->
+<!--<td>20$</td>-->
+<!--<td>-->
+<!--<button type="button" class="btn btn-sm btn-primary">-->
+<!--<span class="glyphicon glyphicon-edit"></span>-->
+<!--</button>-->
+<!--<button type="button" class="btn btn-sm btn-danger">-->
+<!--<span class="glyphicon glyphicon-trash"></span>-->
+<!--</button>-->
+<!--</td>-->
+<!--</tr>-->

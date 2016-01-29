@@ -2,16 +2,16 @@
 
 class ContactUsController {
 	// @ngInject
-	constructor($location, ContactUsService, AuthService) {
+	constructor($location, ContactUsService, AuthFactory) {
 		this.$location = $location;
 		this.contactUsService = ContactUsService;
-		this.authService = AuthService;
+		this.authFactory = AuthFactory;
 		this.contactUs = {};
 	}
 
 
 	sendContactUs() {
-		let token = this.authService.getTokenFromLocalStorage();
+		let token = this.authFactory.getTokenFromLocalStorage();
 		this.contactUsService.create(this.contactUs, token).then(() => {
 			this.$location.path('/');
 		});
