@@ -2,16 +2,22 @@
 
 class DashboardController {
 	// @ngInject
-	constructor(ContactUsService) {
+	constructor($location, ContactUsService, AuthFactory) {
+		this.$location = $location;
 		this.contactUsService = ContactUsService;
+		this.authFactory = AuthFactory;
 		this.init();
 	}
 
 	init() {
-		this.contactUsService.count().then((result) => {
+		let token = this.authFactory.getTokenFromLocalStorage();
+		this.contactUsService.count(token).then((result) => {
 			this.contactUs = result.data;
+		}, (err) => {
+			this.$location.path('/login');
 		});
-	}
+
+	};
 }
 
 angular.module('core').controller('DashboardController', DashboardController);

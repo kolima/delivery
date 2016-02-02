@@ -2,8 +2,9 @@
 
 class SidebarController {
 	// @ngInject
-	constructor($state) {
+	constructor($state, AuthFactory) {
 		this.$state = $state;
+		this.authFactory = AuthFactory;
 	}
 }
 

@@ -1,0 +1,11 @@
+{
+  "LOGIN_HEADER_BUTTON" : "Вход",
+  "REGISTER_HEADER_BUTTON" : "Регистриция" ,
+  "LOGIN_LABEL" : "Логин",
+  "PASSWORD_LABEL" : "Пароль",
+  "LOGIN_PLACEHOLDER" : "Введите логин",
+  "PASSWORD_PLACEHOLDER" : "Введите пароль",
+  "LOGIN_BUTTON" : "Войти",
+  "ENTER_WITH_FACEBOOK" : "Войти через:",
+  "OR_ENTER_AS_USUALLY" : "Или войти как обычно:"
+}

@@ -1,0 +1,23 @@
+{
+  "LOGIN_HEADER_BUTTON" : "Log In",
+  "REGISTER_HEADER_BUTTON" : "Sing Up" ,
+  "LOGIN_LABEL" : "Login",
+  "PASSWORD_LABEL" : "Password",
+  "LOGIN_PLACEHOLDER" : "login",
+  "PASSWORD_PLACEHOLDER" : "password",
+  "LOGIN_BUTTON" : "Login",
+  "ENTER_WITH_FACEBOOK" : "Enter with",
+  "OR_ENTER_AS_USUALLY" : "Or enter as usually",
+  "LOGOUT" : "Log Out",
+  "CHOOSE_LANGUAGE" : "Choose language",
+  "DASHBOARD_TITLE" : "Dashboard",
+  "DELIVERIES_TITLE" : "Deliveries",
+  "PRICES_TITLE" : "Prices",
+  "CONTACT_US_TITLE" : "Contact Us",
+  "DASHBOARD_MENU_BUTTON" : "Dashboard",
+  "DELIVERIES_MENU_BUTTON" : "Deliveries",
+  "PRICES_MENU_BUTTON" : "Prices",
+  "CONTACT_MENU_BUTTON" : "Contact Us",
+  "RUSSIAN" : "Russian",
+  "ENGLISH" : "English"
+}

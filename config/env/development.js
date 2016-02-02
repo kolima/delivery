@@ -2,9 +2,9 @@
 
 module.exports = {
 	db: {
-		uri: process.env.CLEARDB_DATABASE_URL,
+		uri: 'postgres://postgres:12345678@localhost:5432/postgres',
 		options: {
-			dialect: 'mysql',
+			dialect: 'postgres',
 			define: {
 				timestamps: false
 			}

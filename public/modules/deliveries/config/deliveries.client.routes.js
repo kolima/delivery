@@ -8,7 +8,7 @@ class DeliveriesRoutes {
 
     init() {
         this.$stateProvider
-            .state('deliveries', {
+            .state('sidebar.deliveries', {
                 url: '/deliveries',
                 controller: 'DeliveriesController',
                 controllerAs: 'vm',

@@ -5,8 +5,8 @@ class DeliveriesService {
         this.$http = $http;
     }
 
-    findFirst() {
-        return this.$http.get('/api/v1/deliveries/first');
+    findFirst(token) {
+        return this.$http.get('/api/v1/deliveries/first', {headers: {'Authorization': 'Basic ' + token}});
     }
 
     // @ngInject

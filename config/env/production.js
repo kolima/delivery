@@ -4,7 +4,7 @@ module.exports = {
 	db: {
 		uri: process.env.CLEARDB_DATABASE_URL,
 		options: {
-			dialect: 'mysql',
+			dialect: 'postgres',
 			define: {
 				timestamps: false
 			}

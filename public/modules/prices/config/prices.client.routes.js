@@ -8,7 +8,7 @@ class PricesRoutes {
 
     init() {
         this.$stateProvider
-            .state('prices', {
+            .state('sidebar.prices', {
                 url: '/prices',
                 controller: 'PricesController',
                 controllerAs: 'vm',
